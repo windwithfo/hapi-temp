@@ -1,0 +1,8 @@
+{
+  "apps": [
+    {
+      "name": "React",
+      "script": "build/server.js"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "hapi-temp",
+  "version": "1.0.0",
+  "description": "A project use hapi and pug",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --config config/nodemon.json server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hapi",
+    "pug"
+  ],
+  "author": "windwithfo",
+  "license": "ISC",
+  "dependencies": {
+    "hapi": "^16.6.2",
+    "hapi-consolidate": "0.0.3",
+    "pug": "^2.0.0-rc.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "nodemon": "^1.12.1"
+  }
+}
