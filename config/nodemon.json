@@ -7,12 +7,12 @@
     "**/*.css",
     "**/*.json"
   ],
-  "verbose": true,
+  "verbose": false,
   "execMap": {
     "js": "babel-node"
   },
   "events": {
-    "restart": "osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"
+    "restart": "npm run lint"
   },
   "watch": [
     "server"

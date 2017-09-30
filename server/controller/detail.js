@@ -7,5 +7,5 @@ const page2 = (request, reply) => reply('come home');
 
 export default {
   page1,
-  page2,
+  page2
 };

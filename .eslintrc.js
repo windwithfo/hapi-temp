@@ -12,10 +12,10 @@ module.exports = {
   // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
   extends: 'standard',
   // required to lint *.vue files
-  plugins: [
-    'html',
-    'react'
-  ],
+  // plugins: [
+  //   'html',
+  //   'react'
+  // ],
   // add your custom rules here
   rules: {
     // 函数内表达式是否可以使用参数
@@ -47,7 +47,14 @@ module.exports = {
     // 逗号风格，换行时在行首还是行尾
     'comma-style': [1, 'last'],
     // 对象字面量项尾不能有逗号
-    'comma-dangle': [1, 'never'],
+    'comma-dangle': [1, "never"],
+    // 'comma-dangle': [1, {
+    //     "arrays": "always",
+    //     "objects": "always",
+    //     "imports": "never",
+    //     "exports": "never",
+    //     "functions": "ignore"
+    // }],
     // 必须使用全等
     'eqeqeq': 1,
     // 必须使用 if(){} 中的{}
@@ -150,18 +157,18 @@ module.exports = {
     'no-const-assign': 1,
     'object-property-newline': 1,
     'object-curly-newline': 0,
-    'object-curly-spacing': [1, 'never'],
+    'object-curly-spacing': [1, 'always'],
     'no-new-object': 1,
     // !!的使用
     'no-extra-boolean-cast': 0,
     // 字符串拼接风格
     'operator-linebreak': [2, 'before'],
-    'react/jsx-uses-react': 1,
-    "react/jsx-uses-vars": 1,
-    'react/jsx-wrap-multilines': 2,
-    'react/jsx-filename-extension': [1, {
-      extensions: ['.js', '.jsx']
-    }],
+    // 'react/jsx-uses-react': 1,
+    // "react/jsx-uses-vars": 1,
+    // 'react/jsx-wrap-multilines': 2,
+    // 'react/jsx-filename-extension': [1, {
+    //   extensions: ['.js', '.jsx']
+    // }],
     'import/extensions': 0,
     // 是否可以直接返回一个await结果
     'no-return-await': 0
