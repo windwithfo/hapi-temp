@@ -2,6 +2,9 @@
  * @file home router
  * @author windwithfo
  */
+
+import fs         from 'fs';
+import path       from 'path';
 import Joi        from 'joi';
 import detail     from './detail';
 import controller from '../controller/index';
@@ -11,6 +14,23 @@ const routes = [
     method: 'GET',
     path: '/',
     handler: controller.index
+  },
+  {
+    method: 'GET',
+    path: '/mock/{path*}',
+    handler: (request, reply) => {
+      const filePath = path.resolve(__dirname, '..' + request.path) + '.json';
+      const fileBuffer = fs.readFileSync(filePath);
+      reply(JSON.parse(fileBuffer));
+    }
+  },
+  {
+    method: 'GET',
+    path: '/favicon.ico',
+    handler: (request, reply) => {
+      const filePath = path.resolve(__dirname, '../../assets/img/favicon.ico');
+      reply(fs.readFileSync(filePath));
+    }
   },
   {
     method: 'POST',
