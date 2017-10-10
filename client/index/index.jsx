@@ -11,9 +11,7 @@ import ReactDom     from 'react-dom';
 import { observer } from 'mobx-react';
 import Hello        from 'component/Hello';
 
-import {
-  DatePicker
-} from 'antd';
+import { DatePicker } from 'antd';
 
 const isNode = typeof window === 'undefined';
 

@@ -26,6 +26,35 @@ const routes = [
   },
   {
     method: 'GET',
+    path: '/js/{path*}',
+    handler: (request, reply) => {
+      process.send({ action: 'getFile', fileName: path.resolve(__dirname, '../..' + request.path) });
+      process.on('message', (msg) => {
+        console.log(msg);
+        reply(msg);
+      });
+    }
+  },
+  // {
+  //   method: 'GET',
+  //   path: '/css/{path*}',
+  //   handler: (request, reply) => {
+  //     const filePath = path.resolve(__dirname, '..' + request.path);
+  //     const fileBuffer = fs.readFileSync(filePath);
+  //     reply(JSON.parse(fileBuffer));
+  //   }
+  // },
+  // {
+  //   method: 'GET',
+  //   path: '/img/{path*}',
+  //   handler: (request, reply) => {
+  //     const filePath = path.resolve(__dirname, '..' + request.path);
+  //     const fileBuffer = fs.readFileSync(filePath);
+  //     reply(JSON.parse(fileBuffer));
+  //   }
+  // },
+  {
+    method: 'GET',
     path: '/favicon.ico',
     handler: (request, reply) => {
       const filePath = path.resolve(__dirname, '../../assets/img/favicon.ico');

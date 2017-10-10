@@ -8,49 +8,40 @@ import path       from 'path';
 import { Server } from 'hapi';
 import inert      from 'inert';
 import vision     from 'vision';
-import webpack    from 'webpack';
+// import webpack    from 'webpack';
 import routes     from './routes';
 import swagger    from 'hapi-swagger';
 import assets     from './plugin/assets';
 import config     from '../config/config';
 import template   from 'hapi-consolidate';
 import async      from 'hapi-async-handler';
-import middleware from 'hapi-webpack-plugin';
-import webConfig  from '../config/webpack.dev.config';
+// import middleware from 'hapi-webpack-plugin';
+// import webConfig  from '../config/webpack.dev.config';
 
 const server = new Server();
-
-const compiler = webpack(webConfig);
 
 server.connection({
   host: config.server.host,
   port: config.server.port
 });
 
-server.register({
-  register: middleware,
-  options: {
-    compiler,
-    assets: {
-      stats: {
-        colors: true,
-        chunks: false
-      }
-    },
-    hot: {
-      reload: true
-    }
-  }
-}, () => {
-  // compiler.apply(new webpack.ProgressPlugin((percentage) => {
-  //   if (percentage === 1) {
-  //     console.log('reload page');
-  //     middleware.hot.publish({
-  //       action: 'reload'
-  //     });
-  //   }
-  // }));
-});
+// const compiler = webpack(webConfig);
+
+// server.register({
+//   register: middleware,
+//   options: {
+//     compiler,
+//     assets: {
+//       stats: {
+//         colors: true,
+//         chunks: false
+//       }
+//     },
+//     hot: {
+//       reload: true
+//     }
+//   }
+// });
 
 server.register([template, async, assets], (err) => {
   if (err) {

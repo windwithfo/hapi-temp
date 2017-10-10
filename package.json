@@ -7,7 +7,8 @@
   "scripts": {
     "start": "nodemon --config config/nodemon.json server/start.js",
     "lint": "eslint --ext .js server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "babel-node server/cluster.js"
   },
   "keywords": [
     "hapi",
@@ -50,6 +51,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "chokidar": "^1.7.0",
     "css-loader": "^0.28.7",
     "eslint": "^4.8.0",
     "eslint-config-standard": "^10.2.1",
