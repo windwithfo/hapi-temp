@@ -5,10 +5,14 @@
   "main": "index.js",
   "repository": "https://github.com/windwithfo/hapi-temp.git",
   "scripts": {
-    "start": "nodemon --config config/nodemon.json server/start.js",
+    "start": "npm run fe & npm run rd",
+    "fe": "nodemon --config config/nodemon.fe.json server/client.js",
+    "rd": "nodemon --config config/nodemon.rd.json server/start.js",
     "lint": "eslint --ext .js server",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "babel-node server/cluster.js"
+    "build": "npm run build-fe && npm run build-rd",
+    "build-fe": "",
+    "build-rd": ""
   },
   "keywords": [
     "hapi",

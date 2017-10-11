@@ -3,7 +3,6 @@
  * @author dongkunshan(windwithfo@yeah.net)
  */
 
-import path          from 'path';
 import { Server }    from 'hapi';
 import webpack       from 'webpack';
 import cluster       from 'cluster';
@@ -39,7 +38,7 @@ if (cluster.isMaster) {
     console.log(err ? err : `The server for webpack is run in ${config.dev.host} on port ${config.dev.port}`);
   });
 
-  let worker = cluster.fork().on('listening', (address) => {
+  let worker = cluster.fork({ 'NODE_ENV': 'development' }).on('listening', (address) => {
     console.log(`[master] listening: worker ${worker.id}, pid:${worker.process.pid}, `
     + `Address:${address.address} :${address.port}`);
   });
@@ -50,11 +49,10 @@ if (cluster.isMaster) {
   chokidar.watch(watchConfig.dir, watchConfig.options).on('change', (path) => {
     console.log(`${path} changed`);
     worker.kill();
-    worker = cluster.fork().on('listening', (address) => {
+    worker = cluster.fork({ 'NODE_ENV': 'development' }).on('listening', (address) => {
       console.log(`[master] listening: worker ${worker.id}, pid:${worker.process.pid}, `
       + `Address:${address.address} :${address.port}`);
     });
-    console.log(cluster.workers);
   });
 }
 

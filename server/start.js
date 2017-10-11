@@ -5,6 +5,7 @@
 
 import 'babel-polyfill';
 import path       from 'path';
+import nodecp     from 'child_process';
 import Isomorphic from 'webpack-isomorphic-tools';
 import isoConfig  from '../config/isomorphic.config';
 
@@ -25,4 +26,13 @@ const basePath = path.join(__dirname, '../');
 
 // this global variable will be used later in express middleware
 global.webpack_isomorphic_tools = new Isomorphic(isoConfig)
-.server(basePath, () => require('./server.js'));
+.server(basePath, () => {
+  nodecp.exec('npm run lint', (err) => {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      require('./server.js');
+    }
+  });
+});

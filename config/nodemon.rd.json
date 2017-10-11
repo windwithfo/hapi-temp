@@ -1,0 +1,28 @@
+{
+  "restartable": "rs",
+  "ignore": [
+    ".git",
+    "node_modules/**/node_modules",
+    "**/*.less",
+    "**/*.css",
+    "**/*.json"
+  ],
+  "verbose": false,
+  "execMap": {
+    "js": "babel-node"
+  },
+  "events": {
+    "restart": "npm run lint"
+  },
+  "watch": [
+    "server/controller",
+    "server/routes",
+    "server/plugin",
+    "server/config",
+    "server/server.js"
+  ],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "ext": "js"
+}

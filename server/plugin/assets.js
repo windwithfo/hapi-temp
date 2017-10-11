@@ -11,7 +11,7 @@ let assets = assetsJson;
 
 const assetsLoader = function (server, options, next) {
   const getAssets =  function (assetsName) {
-    if (process.env.NODE_ENV !== 'development') {
+    if (process.env.NODE_ENV === 'development') {
       const assetsBuffer = fs.readFileSync(path.resolve(__dirname,
         '../../config/webpack-assets.json'));
       assets = JSON.parse(assetsBuffer);

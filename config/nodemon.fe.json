@@ -1,5 +1,5 @@
 {
-  "restartable": "rs",
+  "restartable": "rsfe",
   "ignore": [
     ".git",
     "node_modules/**/node_modules",
@@ -12,10 +12,11 @@
     "js": "babel-node"
   },
   "events": {
-    "restart": "npm run lint"
+    "restart": "osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"
   },
   "watch": [
-    "server"
+    "config",
+    "server/client.js"
   ],
   "env": {
     "NODE_ENV": "development"
