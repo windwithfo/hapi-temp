@@ -5,14 +5,15 @@
 
 import path from 'path';
 
-const port = 3000;
+const port = 3001;
 
 const config = {
   output: path.resolve(__dirname, '../build'),
   dev: {
     context: path.join(__dirname, '../'),
-    publicPath: '/',
+    publicPath: `http://localhost:${port}/`,
     // publicPath: '/dev/',
+    host: '0.0.0.0',
     port
   },
   build: {

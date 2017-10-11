@@ -8,15 +8,12 @@ import path       from 'path';
 import { Server } from 'hapi';
 import inert      from 'inert';
 import vision     from 'vision';
-// import webpack    from 'webpack';
 import routes     from './routes';
 import swagger    from 'hapi-swagger';
 import assets     from './plugin/assets';
 import config     from '../config/config';
 import template   from 'hapi-consolidate';
 import async      from 'hapi-async-handler';
-// import middleware from 'hapi-webpack-plugin';
-// import webConfig  from '../config/webpack.dev.config';
 
 const server = new Server();
 
@@ -24,24 +21,6 @@ server.connection({
   host: config.server.host,
   port: config.server.port
 });
-
-// const compiler = webpack(webConfig);
-
-// server.register({
-//   register: middleware,
-//   options: {
-//     compiler,
-//     assets: {
-//       stats: {
-//         colors: true,
-//         chunks: false
-//       }
-//     },
-//     hot: {
-//       reload: true
-//     }
-//   }
-// });
 
 server.register([template, async, assets], (err) => {
   if (err) {
@@ -87,5 +66,5 @@ server.register([
 server.route(routes);
 
 server.start((err) => {
-  console.log(err ? err : `The server is run in ${config.server.host} on port ${config.server.port}`);
+  console.log(err ? err : `The server for node is run in ${config.server.host} on port ${config.server.port}`);
 });
