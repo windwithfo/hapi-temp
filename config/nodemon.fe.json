@@ -16,6 +16,7 @@
   },
   "watch": [
     "config",
+    "client/entry.js",
     "server/client.js"
   ],
   "env": {

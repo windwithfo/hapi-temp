@@ -2,10 +2,10 @@
  * @file detail controller
  */
 
-import React            from 'react';
-import Render           from 'react-dom/server';
 import Page             from 'client/detail/detail';
-import { StaticRouter } from 'react-router-dom';
+import { createRenderer } from 'vue-server-renderer';
+
+const renderer = createRenderer();
 
 const handler = (request, reply) => {
   const data = {
@@ -13,12 +13,14 @@ const handler = (request, reply) => {
     page1Text: 'page1',
     page2Text: 'page2'
   };
-  let context = {};
-  let reactHtml = Render.renderToString(
-    <StaticRouter basename="detail" location={{ pathname: request.path }} context={context}>
-      <Page initData={data}/>
-    </StaticRouter>
-  );
+  let reactHtml = '';
+  renderer.renderToString(Page, (err, html) => {
+    if (err) {
+      throw err;
+    }
+    reactHtml = html;
+    console.log(html);
+  });
   reply.render('detail/detail', {
     assets: reply.assets('detail'),
     title: 'hapi detail',

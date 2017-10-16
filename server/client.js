@@ -3,11 +3,11 @@
  * @author dongkunshan(windwithfo@yeah.net)
  */
 
-import { Server }    from 'hapi';
-import webpack       from 'webpack';
-import config        from '../config/config';
-import middleware    from 'hapi-webpack-plugin';
-import webConfig     from '../config/webpack.dev.config';
+import { Server } from 'hapi';
+import webpack    from 'webpack';
+import config     from '../config/config';
+import middleware from 'hapi-webpack-plugin';
+import webConfig  from '../config/webpack.dev.config';
 
 const compiler = webpack(webConfig);
 const server = new Server();

@@ -5,12 +5,12 @@
 
 let pages = {
   // entry
-  index: 'client/index/index.jsx',
-  detail: 'client/detail/detail.jsx'
+  index: 'client/index/index.js',
+  detail: 'client/detail/detail.js'
 };
 
 let vendors = {
-  vendor: ['react', 'react-dom', 'mobx', 'mobx-react']
+  vendor: ['vue', 'vue-router', 'vuex']
 };
 
 export default {

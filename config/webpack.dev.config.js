@@ -10,14 +10,11 @@ import isoConfig  from './isomorphic.config';
 import webConfig  from './webpack.base.config';
 import Linter     from 'stylelint-webpack-plugin';
 import Extract    from 'extract-text-webpack-plugin';
-import Isomorphic from 'webpack-isomorphic-tools/plugin';
 
 // add hot-reload related code to entry chunks
 Object.keys(webConfig.entry).forEach(function (name) {
   webConfig.entry[name] = ['./config/client'].concat(webConfig.entry[name]);
 });
-
-const webpack_isomorphic_tools_plugin = new Isomorphic(isoConfig).development();
 
 let webpackConfig = merge(webConfig, {
   context: config.dev.context,
@@ -30,7 +27,7 @@ let webpackConfig = merge(webConfig, {
   module: {
     rules: [
       {
-        test: /\.js(x)?$/,
+        test: /\.js?$/,
         enforce: 'pre',
         use: {
           loader: 'eslint-loader'
@@ -38,46 +35,12 @@ let webpackConfig = merge(webConfig, {
         exclude: /node_modules/
       },
       {
-        test: webpack_isomorphic_tools_plugin.regular_expression('images'),
+        test: /\.vue?$/,
+        enforce: 'pre',
         use: {
-          loader: 'url',
-          options: {
-            limit: 10000,
-            name: 'img/[name].[hash:7].[ext]'
-          }
-        }
-      },
-      {
-        test: webpack_isomorphic_tools_plugin.regular_expression('fonts'),
-        use: {
-          loader: 'url',
-          options: {
-            limit: 10000,
-            name: 'font/[name].[hash:7].[ext]'
-          }
-        }
-      },
-      {
-        test: webpack_isomorphic_tools_plugin.regular_expression('styles'),
-        use: Extract.extract({
-          fallback: 'style',
-          use: [
-            {
-              loader: 'css',
-            },
-            {
-              loader: 'postcss',
-              options: {
-                plugins: [
-                  require('autoprefixer')
-                ]
-              }
-            },
-            {
-              loader: 'less'
-            }
-          ]
-        })
+          loader: 'eslint-loader'
+        },
+        exclude: /node_modules/
       }
     ]
   },
@@ -87,12 +50,11 @@ let webpackConfig = merge(webConfig, {
   },
   // 插件项
   plugins: [
-    webpack_isomorphic_tools_plugin,
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new Linter({
       configFile: '.stylelintrc.js',
-      files: ['assets/style/*.less', 'client/**/*.less'],
+      files: ['assets/style/*.less', 'client/**/*.vue'],
       ignorePath: 'node_modules/*',
       syntax: 'less'
     }),
@@ -100,12 +62,7 @@ let webpackConfig = merge(webConfig, {
       'process.env': {
         NODE_ENV: JSON.stringify('development')
       }
-    }),
-    // new Html({
-    //   filename: 'index.html',
-    //   template: 'index.html',
-    //   inject: true
-    // })
+    })
   ]
 });
 

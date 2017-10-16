@@ -20,7 +20,7 @@ const config = {
     publicPath: '/'
   },
   server: {
-    entry: path.resolve(__dirname, '../server/start.js'),
+    entry: path.resolve(__dirname, '../client/entry-server.js'),
     port: 3000,
     host: '0.0.0.0',
     fileName: 'server.js',

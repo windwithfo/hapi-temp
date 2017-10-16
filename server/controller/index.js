@@ -2,35 +2,21 @@
  * @file home controller
  */
 
-import React  from 'react';
-import Render from 'react-dom/server';
-import Page   from 'client/index/index';
+import Page               from 'client/index/index';
+import { createRenderer } from 'vue-server-renderer';
+
+const renderer = createRenderer();
 
 const index = (request, reply) => {
-  let data = {
-    text: 'ssr',
-    list: [
-      {
-        id: 1,
-        name: 'emiya',
-        age: 30,
-        sex: 1
-      },
-      {
-        id: 2,
-        name: 'tom',
-        age: 23,
-        sex: 2
-      },
-      {
-        id: 3,
-        name: 'jack',
-        age: 32,
-        sex: 3
-      }
-    ]
-  };
-  const reactHtml = Render.renderToString(<Page initData={data}/>);
+  let reactHtml = '';
+  const data = {};
+  renderer.renderToString(Page, (err, html) => {
+    if (err) {
+      throw err;
+    }
+    reactHtml = html;
+    console.log(html);
+  });
   reply.render('index/index', {
     assets: reply.assets('index'),
     title: 'hapi index',

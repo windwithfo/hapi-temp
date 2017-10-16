@@ -6,6 +6,7 @@
 import path    from 'path';
 import webpack from 'webpack';
 import entry   from '../client/entry';
+import postcss from 'postcss-cssnext';
 import Extract from 'extract-text-webpack-plugin';
 
 let entries = Object.assign({}, entry.pages, entry.vendors);
@@ -23,7 +24,7 @@ let webpackConfig = {
       assets: 'assets',
       page: 'pages'
     },
-    extensions: ['.web.js', '.js', '.jsx', '.json', '.less', '.css']
+    extensions: ['.js', '.vue', '.json', '.less', '.css']
   },
   resolveLoader: {
     moduleExtensions: ['-loader']
@@ -47,55 +48,67 @@ let webpackConfig = {
         },
         exclude: /node_modules/
       },
-      // {
-      //   test: /\.css$/,
-      //   loader: Extract.extract({
-      //     fallback: 'style',
-      //     use: {
-      //       loader: 'css'
-      //     }
-      //   })
-      // },
-      // {
-      //   test: /\.less$/,
-      //   loader: Extract.extract({
-      //     fallback: 'style',
-      //     use: [
-      //       {
-      //         loader: 'css'
-      //       },
-      //       {
-      //         loader: 'less'
-      //       }
-      //     ]
-      //   })
-      // },
+      {
+        test: /\.vue$/,
+        use: {
+          loader: 'vue',
+          options: {
+            postcss: [
+              postcss()
+            ]
+          }
+        },
+        exclude: /node_modules/
+      },
+      {
+        test: /\.css$/,
+        loader: Extract.extract({
+          fallback: 'style',
+          use: {
+            loader: 'css'
+          }
+        })
+      },
+      {
+        test: /\.less$/,
+        loader: Extract.extract({
+          fallback: 'style',
+          use: [
+            {
+              loader: 'css'
+            },
+            {
+              loader: 'less'
+            }
+          ]
+        })
+      },
       {
         test: /\.json$/,
         use: [{
           loader: 'json'
         }]
       },
-      // {
-      //   test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-      //   use: [{
-      //     loader: 'url',
-      //     options: {
-      //       limit: 10000,
-      //       name: 'img/[name].[hash:7].[ext]'
-      //     }
-      //   }]
-      // },
-      // {
-      //   test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-      //   use: [{
-      //     loader: 'url',
-      //     options: {
-      //       limit: 10000,
-      //       name: 'fonts/[name].[hash:7].[ext]'
-      //     }
-      //   }]
-      // }
+      {
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        use: [{
+          loader: 'url',
+          options: {
+            limit: 10000,
+            name: 'img/[name].[hash:7].[ext]'
+          }
+        }]
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        use: [{
+          loader: 'url',
+          options: {
+            limit: 10000,
+            name: 'fonts/[name].[hash:7].[ext]'
+          }
+        }]
+      }
     ]
   }
 };

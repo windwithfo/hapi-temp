@@ -1,18 +1,10 @@
 {
-    "presets": [
-        "es2015",
-        "stage-0",
-        "react"
-    ],
-    "plugins": [
-      "transform-decorators-legacy",
-      "transform-runtime",
-      ["import", [{
-          "libraryName": "antd",
-          "style": "css"
-      }, {
-          "libraryName": "antd-mobile",
-          "style": "css"
-      }]]
-    ]
+  "presets": [
+    "es2015",
+    "stage-0",
+    "vue"
+  ],
+  "plugins": [
+    "transform-runtime"
+  ]
 }
