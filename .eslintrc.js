@@ -13,8 +13,7 @@ module.exports = {
   extends: 'standard',
   // required to lint *.vue files
   plugins: [
-    'html',
-    'react'
+    'html'
   ],
   // add your custom rules here
   rules: {
@@ -163,12 +162,6 @@ module.exports = {
     'no-extra-boolean-cast': 0,
     // 字符串拼接风格
     'operator-linebreak': [2, 'before'],
-    'react/jsx-uses-react': 1,
-    "react/jsx-uses-vars": 1,
-    'react/jsx-wrap-multilines': 2,
-    'react/jsx-filename-extension': [1, {
-      extensions: ['.js', '.jsx']
-    }],
     'import/extensions': 0,
     // 是否可以直接返回一个await结果
     'no-return-await': 0

@@ -5,23 +5,26 @@
 
 import path from 'path';
 
-const port = 3001;
+const port = 3000;
 
 const config = {
   output: path.resolve(__dirname, '../build'),
   dev: {
+    entry: path.resolve(__dirname, '../client/entry-client.js'),
     context: path.join(__dirname, '../'),
-    publicPath: `http://localhost:${port}/`,
+    publicPath: '/',
     // publicPath: '/dev/',
     host: '0.0.0.0',
-    port
+    port,
+    apiService: 'http://localhost:' + port
   },
   build: {
-    publicPath: '/'
+    publicPath: '/',
+    apiService: 'http://localhost:' + port
   },
   server: {
     entry: path.resolve(__dirname, '../client/entry-server.js'),
-    port: 3000,
+    port: port,
     host: '0.0.0.0',
     fileName: 'server.js',
     sourceMap: false

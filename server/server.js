@@ -10,10 +10,12 @@ import inert      from 'inert';
 import vision     from 'vision';
 import routes     from './routes';
 import swagger    from 'hapi-swagger';
-import assets     from './plugin/assets';
-import config     from '../config/config';
+import ssr        from './plugin/ssr';
+// import assets     from './plugin/assets';
 import template   from 'hapi-consolidate';
+import config     from '../configs/config';
 import async      from 'hapi-async-handler';
+import staticFile from 'hapi-static-content';
 
 const server = new Server();
 
@@ -22,7 +24,7 @@ server.connection({
   port: config.server.port
 });
 
-server.register([template, async, assets], (err) => {
+server.register([template, async, ssr], (err) => {
   if (err) {
     throw err;
   }
@@ -66,5 +68,5 @@ server.register([
 server.route(routes);
 
 server.start((err) => {
-  console.log(err ? err : `The server for node is run in ${config.server.host} on port ${config.server.port}`);
+  console.log(err ? err : `The server is run in ${config.server.host} on port ${config.server.port}`);
 });

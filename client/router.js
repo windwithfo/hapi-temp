@@ -12,9 +12,16 @@ export function createRouter() {
   return new Router({
     mode: 'history',
     routes: [
-      { path: '/', component: () => import('./detail/Home') },
-      { path: '/page1/:id', component: () => import('./detail/Page1') },
-      { path: '/page2', component: () => import('./detail/Page2') }
+      { name: 'home', path: '/index', component: () => import('./index/Index') },
+      {
+        name: 'detail',
+        path: '/detail',
+        component: () => import('./detail/Home'),
+        children: [
+          { name: 'detailpage1', path: 'page1/:id', component: () => import('./detail/Page1') },
+          { name: 'detailpage2', path: 'page2', component: () => import('./detail/Page2') }
+        ]
+      }
     ]
   });
 }

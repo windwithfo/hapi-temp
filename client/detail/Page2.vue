@@ -1,18 +1,29 @@
 <style lang='less'>
-  .home {
+  .page2 {
     color: #ccf;
   }
 </style>
 
 <template lang="pug">
-  .home this is {{ text }}
-    input(:value=text)
-    button(class="btn") click
+  transition(name="fade" mode="in-out")
+    .page2 this is {{ text }}
+      br
+      input(v-model:value.trim="text")
+      button(class="btn" @click="showText") click
 </template>
 
 <script>
-export default {
-  name: 'page2',
-  props: ['text']
-};
+  export default {
+    name: 'detailpage2',
+    data() {
+      return {
+        text: 'page2'
+      };
+    },
+    methods: {
+      showText() {
+        console.log(this.text);
+      }
+    }
+  };
 </script>

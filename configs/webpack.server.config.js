@@ -4,7 +4,7 @@ import nodeExternals from 'webpack-node-externals';
 import baseConfig    from './webpack.base.config.js';
 import SSRPlugin     from 'vue-server-renderer/server-plugin';
 
-module.exports = merge(baseConfig, {
+const webpackConfig = merge(baseConfig, {
   // 将 entry 指向应用程序的 server entry 文件
   entry: config.server.entry,
   // 这允许 webpack 以 Node 适用方式(Node-appropriate fashion)处理动态导入(dynamic import)，
@@ -34,4 +34,6 @@ module.exports = merge(baseConfig, {
   plugins: [
     new SSRPlugin()
   ]
-})
+});
+
+export default webpackConfig;

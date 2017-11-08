@@ -1,5 +1,5 @@
 {
-  "restartable": "rsfe",
+  "restartable": "rs",
   "ignore": [
     ".git",
     "node_modules/**/node_modules",
@@ -15,12 +15,10 @@
     "restart": "osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"
   },
   "watch": [
-    "config",
-    "client/entry.js",
-    "server/client.js"
+    "server/server"
   ],
   "env": {
-    "NODE_ENV": "development"
+    "NODE_ENV": "developments"
   },
   "ext": "js"
 }

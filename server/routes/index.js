@@ -12,14 +12,14 @@ import controller from '../controller/index';
 const routes = [
   {
     method: 'GET',
-    path: '/',
+    path: '/{name}/{path*}',
     handler: controller.index
   },
   {
     method: 'GET',
-    path: '/mock/{path*}',
+    path: '/api/v1/{path*}',
     handler: (request, reply) => {
-      const filePath = path.resolve(__dirname, '..' + request.path) + '.json';
+      const filePath = path.resolve(__dirname, '../' + request.path.replace('/api/v1', 'static'));
       const fileBuffer = fs.readFileSync(filePath);
       reply(JSON.parse(fileBuffer));
     }

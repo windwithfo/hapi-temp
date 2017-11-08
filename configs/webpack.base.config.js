@@ -5,14 +5,10 @@
 
 import path    from 'path';
 import webpack from 'webpack';
-import entry   from '../client/entry';
+import config  from './config';
 import postcss from 'postcss-cssnext';
-import Extract from 'extract-text-webpack-plugin';
-
-let entries = Object.assign({}, entry.pages, entry.vendors);
 
 let webpackConfig = {
-  entry: entries,
   resolve: {
     modules: [
       'node_modules',
@@ -20,25 +16,16 @@ let webpackConfig = {
       path.resolve(__dirname, '../node_modules')
     ],
     alias: {
+      vue$: 'vue/dist/vue.js',
       component: 'components',
       assets: 'assets',
-      page: 'pages'
+      client: 'client'
     },
     extensions: ['.js', '.vue', '.json', '.less', '.css']
   },
   resolveLoader: {
     moduleExtensions: ['-loader']
   },
-  plugins: [
-    new Extract({
-      filename: 'css/[name].[contenthash].css',
-      disable: false,
-      allChunks: true
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor', 'manifest']
-    })
-  ],
   module: {
     rules: [
       {
@@ -59,29 +46,6 @@ let webpackConfig = {
           }
         },
         exclude: /node_modules/
-      },
-      {
-        test: /\.css$/,
-        loader: Extract.extract({
-          fallback: 'style',
-          use: {
-            loader: 'css'
-          }
-        })
-      },
-      {
-        test: /\.less$/,
-        loader: Extract.extract({
-          fallback: 'style',
-          use: [
-            {
-              loader: 'css'
-            },
-            {
-              loader: 'less'
-            }
-          ]
-        })
       },
       {
         test: /\.json$/,
@@ -113,6 +77,4 @@ let webpackConfig = {
   }
 };
 
-export default {
-  ...webpackConfig
-};
+export default webpackConfig;

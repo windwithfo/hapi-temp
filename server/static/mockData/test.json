@@ -1,0 +1,19 @@
+{
+  "data": {
+    "list": [
+      {
+        "text": "123",
+        "value": 1
+      },
+      {
+        "text": "456",
+        "value": 2
+      },
+      {
+        "text": "789",
+        "value": 3
+      }
+    ]
+  },
+  "msg": "succes"
+}
