@@ -11,24 +11,25 @@ const serverInfo =
 
 const index = async (request, reply) => {
   const name = request.params.name;
-  if (ignore.includes(name)) {
-    console.log('ignore ' + name);
-    return reply.continue();
-  }
-  if (name === 'js' || name === 'css') {
-    const filePath = path.resolve(__dirname, '../../build' + request.path);
-    const fileBuffer = fs.readFileSync(filePath);
-    return reply(fileBuffer);
-  }
-  const options = {
-    title: 'vue-ssr title',
-    url: name
-  };
   try {
-    request.headers['Content-Type'] = 'text/html';
-    request.headers['Server'] = serverInfo;
+    if (ignore.includes(name)) {
+      console.log('ignore ' + name);
+      return reply.continue();
+    }
+    if (name === 'js' || name === 'css') {
+      const filePath = path.resolve(__dirname, '../../build' + request.path);
+      const fileBuffer = fs.readFileSync(filePath);
+      if (name === 'css') {
+        return reply(fileBuffer).type('text/css');
+      }
+      return reply(fileBuffer).type('application/javascript');
+    }
+    const options = {
+      title: 'vue-ssr title',
+      url: name
+    };
     const html = await reply.ssr(options);
-    return reply(html);
+    return reply(html).type('text/html').header('Server', serverInfo);
   }
   catch (e) {
     console.log(e);

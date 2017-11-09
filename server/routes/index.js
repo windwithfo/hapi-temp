@@ -29,7 +29,7 @@ const routes = [
     path: '/favicon.ico',
     handler: (request, reply) => {
       const filePath = path.resolve(__dirname, '../../assets/img/favicon.ico');
-      reply(fs.readFileSync(filePath));
+      reply(fs.readFileSync(filePath)).type('image/x-icon');
     }
   },
   {
