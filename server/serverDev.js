@@ -54,9 +54,11 @@ module.exports = function setupDevServer(server, templatePath, cb) {
   const devMiddleware = WebpackDev(clientCompiler, {
     publicPath: clientConfig.output.publicPath,
     stats: {
-      colors: true
+      colors: true,
+      chunks: false,
+      modules: false
     },
-    noInfo: true
+    noInfo: false
   });
 
   // Handle webpackDevMiddleware

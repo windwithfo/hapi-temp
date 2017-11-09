@@ -2,13 +2,6 @@ extends ../layouts/base.pug
 block head
   include ../includes/head.pug
 block style
-  link(href=assets.styles.vendor rel="stylesheet")
-  link(href=assets.styles.detail rel="stylesheet")
 block content 
-  #app !{reactHtml}
+  #app Html
 block jslib
-  script(type="text/javascript").
-    window.__initData = !{initData};
-  script(src=assets.javascript.manifest)
-  script(src=assets.javascript.vendor)
-  script(src=assets.javascript.detail)

@@ -87,11 +87,6 @@ let webpackConfig = merge(webConfig, {
     // on every build.
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest'
-    }),
-    new Extract({
-      filename: 'css/[name].[contenthash].css',
-      disable: false,
-      allChunks: true
     })
   ]
 });

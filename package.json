@@ -7,7 +7,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production babel-node server/server",
     "dev": "nodemon --config configs/nodemon.json server/server",
-    "build": "babel-node configs/build --display-error-details && zip -r vue.zip build",
+    "build": "cross-env NODE_ENV=production babel-node configs/build --display-error-details && zip -r vue.zip build",
     "lint": "eslint --ext .js server",
     "create": "babel-node scripts/create.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -70,7 +70,7 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
     "eventsource-polyfill": "^0.9.6",
-    "extract-text-webpack-plugin": "^3.0.1",
+    "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.5",
     "hapi-webpack-plugin": "^2.0.0",
     "less": "^2.7.3",

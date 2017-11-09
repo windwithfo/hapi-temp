@@ -7,6 +7,10 @@ import path    from 'path';
 import webpack from 'webpack';
 import config  from './config';
 import postcss from 'postcss-cssnext';
+import Extract from 'extract-text-webpack-plugin';
+
+const isProduction = process.env.NODE_ENV === 'production';
+console.log('process.env.NODE_ENV', process.env.NODE_ENV);
 
 let webpackConfig = {
   resolve: {
@@ -41,8 +45,9 @@ let webpackConfig = {
           loader: 'vue',
           options: {
             postcss: [
-              postcss()
-            ]
+              postcss(require('autoprefixer'))
+            ],
+            extractCSS: isProduction
           }
         },
         exclude: /node_modules/
@@ -74,7 +79,15 @@ let webpackConfig = {
         }]
       }
     ]
-  }
+  },
+  plugins: isProduction
+    // make sure to add the plugin!
+    ? [new Extract({
+      filename: 'css/[name].[contenthash].css',
+      disable: false,
+      allChunks: true
+    })]
+    : []
 };
 
 export default webpackConfig;

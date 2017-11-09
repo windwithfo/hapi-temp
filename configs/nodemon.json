@@ -18,7 +18,7 @@
     "server/server"
   ],
   "env": {
-    "NODE_ENV": "developments"
+    "NODE_ENV": "development"
   },
   "ext": "js"
 }

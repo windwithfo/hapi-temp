@@ -68,7 +68,25 @@ const vueSSRRender = function (server, options, next) {
     const clientManifest = require('../../build/vue-ssr-client-manifest.json')
     renderer = createRenderer(bundle, {
       template,
-      clientManifest
+      clientManifest,
+      shouldPreload: (file, type) => {
+        // type is inferred based on the file extension.
+        // https://fetch.spec.whatwg.org/#concept-request-destination
+        // if (type === 'style') {
+        //   return false;
+        // }
+        // if (type === 'script') {
+        //   return true
+        // }
+        // if (type === 'font') {
+        //   // only preload woff2 fonts
+        //   return /\.woff2$/.test(file)
+        // }
+        // if (type === 'image') {
+        //   // only preload important images
+        //   return file === 'hero.jpg'
+        // }
+      }
     })
   }
 
