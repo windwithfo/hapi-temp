@@ -63,6 +63,34 @@ server.register([
   if (err) {
     throw err;
   }
+  // // reply.file can be use with inert register
+  // server.route({
+  //   method: 'GET',
+  //   path: '/picture.jpg',
+  //   handler: function (request, reply) {
+  //     reply.file('/path/to/picture.jpg');
+  //   }
+  // });
+  //
+  // // File handler
+  // server.route({
+  //   method: 'GET',
+  //   path: '/{param*}',
+  //   handler: {
+  //     directory: {
+  //       path: 'public'
+  //     }
+  //   }
+  // });
+  //
+  // // Directory handler
+  // server.route({
+  //   method: 'GET',
+  //   path: '/picture.jpg',
+  //   handler: {
+  //     file: 'picture.jpg'
+  //   }
+  // });
 });
 
 server.route(routes);

@@ -8,7 +8,7 @@ import controller from '../controller/detail';
 const routes = [
   {
     method: 'GET',
-    path: '/detail/{path*}',
+    path: '/view/detail/{path*}',
     handler: controller.handler
   }
 ];

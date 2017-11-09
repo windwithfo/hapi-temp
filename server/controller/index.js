@@ -16,13 +16,14 @@ const index = async (request, reply) => {
       console.log('ignore ' + name);
       return reply.continue();
     }
-    if (name === 'js' || name === 'css') {
+    if (name === 'js' || name === 'css' || name === 'img') {
       const filePath = path.resolve(__dirname, '../../build' + request.path);
-      const fileBuffer = fs.readFileSync(filePath);
-      if (name === 'css') {
-        return reply(fileBuffer).type('text/css');
-      }
-      return reply(fileBuffer).type('application/javascript');
+      // const fileBuffer = fs.readFileSync(filePath);
+      // if (name === 'css') {
+      //   return reply(fileBuffer).type('text/css');
+      // }
+      return reply.file(filePath);
+      // return reply(fileBuffer).type('application/javascript');
     }
     const options = {
       title: 'vue-ssr title',
